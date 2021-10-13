@@ -332,7 +332,6 @@ spotify-cli-linux==1.6.0
 SQLAlchemy==1.3.12
 srsly==2.4.1
 ssh-import-id==5.10
--e git+git@github.com:DLR-RM/stable-baselines3.git@07c0be877be54dc622653c82342147cd9c0aa278#egg=stable_baselines3
 streamlit==1.0.0
 svgwrite==1.4.1
 systemd-python==234
