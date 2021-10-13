@@ -1,7 +1,9 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+.vscode/settings.json
 *.py[cod]
 *$py.class
+*.pkl
 
 # C extensions
 *.so
@@ -103,6 +105,8 @@ celerybeat.pid
 
 # Environments
 .env
+env.local
+env.prod
 .venv
 env/
 venv/
@@ -126,4 +130,3 @@ venv.bak/
 dmypy.json
 
 # Pyre type checker
-.pyre/
