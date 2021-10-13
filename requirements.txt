@@ -406,3 +406,4 @@ you-get==0.4.1456
 youtube-dl==2020.12.14
 zeroconf==0.24.4
 zipp==1.0.0
+sqlalchemy
