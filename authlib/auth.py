@@ -67,22 +67,22 @@ def _auth(sidebar=True, show_msgs=True):
 
     global store
     if store == None:
-        try:
-            from authlib.repo.storage_factory import StorageFactory
+        # try:
+        from authlib.repo.storage_factory import StorageFactory
 
-            # get the store
-            store = StorageFactory().get_provider(STORAGE, allow_db_create=False, if_table_exists='ignore')
-            # check the table
-            ctx = {'fields': "*", 'modifier': "LIMIT 1"}
-            store.query(context=ctx)
-        except None as ex:
-            logging.warning(f">>> Storage exception <<<\n`{str(ex)}`")
-            store = None
-            set_auth_message(
-                "Auth DB Not Found. Consider running admin script in standalone mode to generate it.",
-                type=const.WARNING,
-                show_msgs=True
-            )
+        # get the store
+        store = StorageFactory().get_provider(STORAGE, allow_db_create=False, if_table_exists='ignore')
+        # check the table
+        ctx = {'fields': "*", 'modifier': "LIMIT 1"}
+        store.query(context=ctx)
+        # except Exception as ex:
+            # logging.warning(f">>> Storage exception <<<\n`{str(ex)}`")
+            # store = None
+            # set_auth_message(
+                # "Auth DB Not Found. Consider running admin script in standalone mode to generate it.",
+                # type=const.WARNING,
+                # show_msgs=True
+            # )
 
     header_widget = st.sidebar.subheader if sidebar else st.subheader
     username_widget = st.sidebar.text_input if sidebar else st.text_input
