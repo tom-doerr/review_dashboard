@@ -75,7 +75,7 @@ def _auth(sidebar=True, show_msgs=True):
             # check the table
             ctx = {'fields': "*", 'modifier': "LIMIT 1"}
             store.query(context=ctx)
-        except Exception as ex:
+        except None as ex:
             logging.warning(f">>> Storage exception <<<\n`{str(ex)}`")
             store = None
             set_auth_message(
