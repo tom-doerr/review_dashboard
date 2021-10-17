@@ -6,7 +6,7 @@ user score an applicant.
 '''
 
 import streamlit as st
-st.set_page_config(page_title="Simple Auth", layout="wide")
+st.set_page_config(page_title="TUM AI Review", layout="wide")
 
 import streamlit_debug
 streamlit_debug.set(flag=False, wait_for_client=True, host='localhost', port=8765)
@@ -21,7 +21,7 @@ import sys
 
 user = auth(sidebar=True, show_msgs=True)
 
-st.title('Test App')
+st.title('TUM AI Review')
 if authenticated():
     st.success(f'`{user}` is authenticated')
 else:
@@ -35,7 +35,7 @@ else:
 # Let the user input the ID of the applicant that is supposed to be displayed.
 st.sidebar.title('User Selection')
 applicant_id = st.sidebar.text_input('Applicant ID', value='4')
-value = st.sidebar.slider('Slider', -1, 10, -1)
+value = st.sidebar.slider('Applicant Score (-1 for not scored)', -1, 10, -1)
 
 # Show the user id.
 st.title(f'User #{applicant_id}')
@@ -62,21 +62,27 @@ st.markdown("""
 
 
 db_url = st.secrets['db_url']
+def has_func(): return 0
 
-# Connect
-import sqlalchemy
-engine = sqlalchemy.create_engine(db_url)
-engine.connect()
+import builtins
 
-from sqlalchemy import MetaData
-meta = MetaData()
-meta.reflect(bind=engine)
+# @st.cache(hash_funcs={builtins.weakref: has_func})
+# @st.cache
+# @st.cache(hash_funcs={Object: lambda _: None})
+@st.cache(allow_output_mutation=True)
+def connect_to_database():
+    # Connect
+    import sqlalchemy
+    engine = sqlalchemy.create_engine(db_url)
+    engine.connect()
 
-# Show all available fields in the table.
-from sqlalchemy import inspect
-inspector = inspect(engine)
+    from sqlalchemy import MetaData
+    meta = MetaData()
+    meta.reflect(bind=engine)
 
-columns = inspector.get_columns('api_appform')
+    return engine, meta
+
+engine, meta = connect_to_database()
 
 # The above items as a list.
 columns = ['firstname',
