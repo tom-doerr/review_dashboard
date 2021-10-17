@@ -1,3 +1,4 @@
+import typing
 from typing import Literal
 import streamlit as st
 import sqlite3
