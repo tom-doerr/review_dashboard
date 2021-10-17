@@ -35,7 +35,12 @@ else:
 # Let the user input the ID of the applicant that is supposed to be displayed.
 st.sidebar.title('User Selection')
 applicant_id = st.sidebar.text_input('Applicant ID', value='4')
-value = st.sidebar.slider('Applicant Score (-1 for not scored)', -1, 10, -1)
+
+st.sidebar.title('Scores (-1 for not scored)')
+value = st.sidebar.slider('Motivation Score:', -1, 5, -1)
+value = st.sidebar.slider('Skills/Experience Score:', -1, 5, -1)
+value = st.sidebar.slider('Fit for TUM.ai Score:', -1, 5, -1)
+
 
 # Show the user id.
 st.title(f'User #{applicant_id}')
