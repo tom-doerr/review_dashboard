@@ -31,14 +31,14 @@ else:
     sys.exit()
 
 
+
 # Let the user input the ID of the applicant that is supposed to be displayed.
 st.sidebar.title('User Selection')
 applicant_id = st.sidebar.text_input('Applicant ID', value='4')
+value = st.sidebar.slider('Slider', -1, 10, -1)
 
 # Show the user id.
 st.title(f'User #{applicant_id}')
-
-
 
 
 db_url = st.secrets['db_url']
@@ -91,10 +91,8 @@ for item in columns:
     with engine.connect() as conn:
         result = conn.execute(query).fetchone()
     item_name_capitalized = item.capitalize()
-    st.write(f'{item_name_capitalized}: {result[1]}')
+    value = result[1] if result else None
+    st.write(f'{item_name_capitalized}: {value}')
 
 
 
-
-# Let the user select a score.
-score = st.slider('Score', 1, 10, 5)
