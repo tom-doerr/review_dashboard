@@ -41,8 +41,27 @@ value = st.sidebar.slider('Slider', -1, 10, -1)
 st.title(f'User #{applicant_id}')
 
 
-db_url = st.secrets['db_url']
 
+
+
+
+st.markdown("""
+<embed src="https://drive.google.com/viewerng/
+viewer?embedded=true&url=https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" width="1000" height="1000">
+""", unsafe_allow_html=True)
+
+
+st.markdown("""
+<embed src="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" width="1000" height="400">
+""", unsafe_allow_html=True)
+
+
+
+
+
+
+
+db_url = st.secrets['db_url']
 
 # Connect
 import sqlalchemy
